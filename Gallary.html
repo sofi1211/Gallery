@@ -1,0 +1,139 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovely Picture Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #d63384;
+            margin-top: 20px;
+        }
+        #gallery-container {
+            display: none;
+            opacity: 0; /* Start hidden */
+            animation: fadeIn 1s forwards; /* Fade-in animation for the whole gallery */
+        }
+        #login-container {
+            padding: 50px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* Default 5 columns */
+            gap: 15px;
+            padding: 20px;
+            grid-template-rows: repeat(5, auto); /* 5 rows */
+            opacity: 0;
+            animation: gridAnimation 1s ease-out forwards; /* Animation for grid arrangement */
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+            opacity: 0;
+            animation: fadeInImage 0.5s ease-out forwards;
+        }
+        .gallery img:hover {
+            transform: scale(1.1); /* Scale up the image */
+            filter: brightness(1.2) contrast(1.4) saturate(1.5); /* Amazing filter effects */
+        }
+        /* Fade-in for the whole gallery */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        /* Grid animation that will position images */
+        @keyframes gridAnimation {
+            to {
+                opacity: 1;
+            }
+        }
+        /* Fade-in for each image */
+        @keyframes fadeInImage {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Bezawit ❤️</h1>
+
+    <!-- Login form asking for date of birth -->
+    <div id="login-container">
+        <h2>Please enter your date of birth:</h2>
+        <input type="date" id="dob" required>
+        <button onclick="checkDOB()">Enter</button>
+        <p class="error-message" id="error-message"></p>
+    </div>
+
+    <!-- Picture Gallery (hidden initially) -->
+    <div id="gallery-container">
+        <div class="gallery">
+            <!-- Replace the URLs below with your own image links -->
+            <img src="1.jpg" alt="Rose 1">
+            <img src="2.jpg" alt="Rose 2">
+            <img src="3.jpg" alt="Rose 3">
+            <img src="4.jpg" alt="Rose 4">
+            <img src="5.jpg" alt="Rose 5">
+            <img src="6.jpg" alt="Rose 6">
+            <img src="7.jpg" alt="Rose 7">
+            <img src="8.jpg" alt="Rose 8">
+            <img src="9.jpg" alt="Rose 9">
+            <img src="10.jpg" alt="Rose 10">
+            <img src="11.jpg" alt="Rose 11">
+            <img src="12.jpg" alt="Rose 12">
+            <img src="13.jpg" alt="Rose 13">
+            <img src="14.jpg" alt="Rose 14">
+            <img src="15.jpg" alt="Rose 15">
+            <img src="16.jpg" alt="Rose 16">
+            <img src="17.jpg" alt="Rose 17">
+            <img src="18.jpg" alt="Rose 18">
+            <img src="19.jpg" alt="Rose 19">
+            <img src="20.jpg" alt="Rose 20">
+        </div>
+    </div>
+
+    <script>
+        function checkDOB() {
+            const dobInput = document.getElementById('dob').value;
+            const correctDOB = "1999-06-19"; // Replace this with the correct date of birth
+            const errorMessage = document.getElementById('error-message');
+            const galleryContainer = document.getElementById('gallery-container');
+            const loginContainer = document.getElementById('login-container');
+            const title = document.getElementById('title');
+
+            if (dobInput === correctDOB) {
+                // Show gallery, hide login form, and show title
+                galleryContainer.style.display = "block";
+                loginContainer.style.display = "none";
+                title.style.display = "block"; // Show title again once the gallery is displayed
+            } else {
+                // Show error message
+                errorMessage.textContent = "Incorrect date of birth. Please try again.";
+            }
+        }
+
+        // Hide the title initially
+        document.getElementById('title').style.display = "none";
+    </script>
+</body>
+</html>
